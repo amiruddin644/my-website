@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eBook Hub</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- External CSS -->
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>  
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+
+    <!-- Left: Logo + Title -->
+    <div class="brand">
+      <img src="img/kkklcs_logo-removebg-preview.png" alt="KKKLCS Logo" class="logo-img">
+      <h1 class="logo">eBook Hub</h1>
+    </div>
+
+    <!-- Center: Navigation -->
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">Books</a>
+      <a href="#">Videos</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <!-- Right: POLYCC Logo -->
+    <div class="polycc">
+      <img src="img/POLYCC-TVET-For-All-CB.png" alt="POLYCC TVET" class="polycc-logo">
+    </div>
+
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="container main-content">
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Welcome to eBook Hub</h2>
+    <p class="lead">
+      Explore interactive flipbooks and lecture videos in a modern learning space.
+    </p>
+    <a href="#" class="hero-btn">Explore Now</a>
+  </section>
+
+  <!-- Content Section -->
+  <section class="content-grid">
+
+    <!-- Flipbook Card -->
+    <div class="card">
+      <h3>📘 Flipbook</h3>
+      <div class="media">
+        <iframe 
+          id="flipbookFrame"
+          class="fp-iframe"
+          src="https://heyzine.com/flip-book/87adfd5534.html"
+          allowfullscreen
+          allow="clipboard-write"
+          scrolling="no"
+          style="border: 1px solid lightgray; width: 100%; height: 400px;">
+        </iframe>
+      </div>
+
+      <div class="controls">
+        <a id="downloadFlipbook" class="btn" href="https://heyzine.com/flip-book/87adfd5534.html" target="_blank" download>
+          Download
+        </a>
+        <button id="btnFlipbook1" class="btn" type="button">1</button>
+        <button id="btnFlipbook3" class="btn" type="button">2</button>
+        <button id="btnFlipbook2" class="btn" type="button">3</button>
+      </div>
+    </div>
+
+    <!-- Video Card -->
+    <div class="card">
+      <h3>🎥 Lecture Video</h3>
+      <div class="media">
+        <video id="lectureVideo" class="responsive-video" controls>
+          <source id="lectureSource" src="vd/MIKROEKONOMI TOPIK 1(60fps).mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="controls">
+        <a id="downloadBtn" class="btn" href="vd/MIKROEKONOMI TOPIK 1(60fps).mp4" download>
+          Download
+        </a>
+        <button id="btnVideo1" class="btn" type="button">1</button>
+        <button id="btnVideo2" class="btn" type="button">2</button>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 eBook Hub — Designed with 🔵 & 🟠</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Video controls
+  const video = document.getElementById('lectureVideo');
+  const source = document.getElementById('lectureSource');
+  const download = document.getElementById('downloadBtn');
+  const btn1 = document.getElementById('btnVideo1');
+  const btn2 = document.getElementById('btnVideo2');
+
+  const v1 = 'vd/MIKROEKONOMI TOPIK 1(60fps).mp4';
+  const v2 = 'vd/MIKROEKONOMI TOPIK 2/MIKROEKONOMI TOPIK 2.mp4';
+  const poster2 = 'vd/MIKROEKONOMI TOPIK 2/MIKROEKONOMI TOPIK 2-Cover.jpg';
+
+  function setVideo(src, poster){
+    source.src = src;
+    if(poster){
+      video.setAttribute('poster', poster);
+    } else {
+      video.removeAttribute('poster');
+    }
+    video.load();
+    download.href = src;
+    download.setAttribute('download', src.split('/').pop());
+  }
+
+  if(btn1) btn1.addEventListener('click', ()=> setVideo(v1, ''));
+  if(btn2) btn2.addEventListener('click', ()=> setVideo(v2, poster2));
+
+  // Flipbook controls
+  const flipbookFrame = document.getElementById('flipbookFrame');
+  const downloadFlipbook = document.getElementById('downloadFlipbook');
+  const btnFlipbook1 = document.getElementById('btnFlipbook1');
+  const btnFlipbook2 = document.getElementById('btnFlipbook2');
+  const btnFlipbook3 = document.getElementById('btnFlipbook3');
+
+  const fb1 = 'https://heyzine.com/flip-book/87adfd5534.html';
+  const fb2 = 'https://heyzine.com/flip-book/305b5dd11d.html';
+  const fb3 = 'https://heyzine.com/flip-book/b007949bc7.html';
+
+  function setFlipbook(src){
+    flipbookFrame.src = src;
+    downloadFlipbook.href = src;
+  }
+
+  if(btnFlipbook1) btnFlipbook1.addEventListener('click', ()=> setFlipbook(fb1));
+  if(btnFlipbook2) btnFlipbook2.addEventListener('click', ()=> setFlipbook(fb2));
+  if(btnFlipbook3) btnFlipbook3.addEventListener('click', ()=> setFlipbook(fb3));
+})();
+</script>
+
+</body>
+</html>
